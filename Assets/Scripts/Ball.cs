@@ -1,17 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class Ball : MonoBehaviour
 {
     Rigidbody2D _rigidbody2D = null;
-    public Rigidbody2D RigidBody {
-        get { return _rigidbody2D ?? (_rigidbody2D = gameObject.GetComponent<Rigidbody2D> ()); }
+    public Rigidbody2D RigidBody
+    {
+        get { return _rigidbody2D ?? (_rigidbody2D = gameObject.GetComponent<Rigidbody2D>()); }
     }
 
     SpriteRenderer _renderer = null;
-    public SpriteRenderer Renderer {
-        get { return _renderer ?? (_renderer = gameObject.GetComponent<SpriteRenderer> ()); }
+    public SpriteRenderer Renderer
+    {
+        get { return _renderer ?? (_renderer = gameObject.GetComponent<SpriteRenderer>()); }
     }
 
     float sprite_w;
@@ -39,14 +38,20 @@ public class Ball : MonoBehaviour
     {
         Vector2 position = transform.position;
         Vector2 v = RigidBody.velocity;
-        if (position.x < screen_min.x + sprite_w / 2 && v.x < 0) {
-            v.x *= -1;
-        } else if (position.x > screen_max.x - sprite_w / 2 && v.x > 0) {
+        if (position.x < screen_min.x + sprite_w / 2 && v.x < 0)
+        {
             v.x *= -1;
         }
-        if (position.y < screen_min.y + sprite_h / 2 && v.y < 0) {
+        else if (position.x > screen_max.x - sprite_w / 2 && v.x > 0)
+        {
+            v.x *= -1;
+        }
+        if (position.y < screen_min.y + sprite_h / 2 && v.y < 0)
+        {
             v.y *= -1;
-        } else if (position.y > screen_max.y - sprite_h / 2 && v.y > 0) {
+        }
+        else if (position.y > screen_max.y - sprite_h / 2 && v.y > 0)
+        {
             v.y *= -1;
         }
         RigidBody.velocity = v;
