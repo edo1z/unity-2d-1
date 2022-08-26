@@ -31,7 +31,6 @@ public class Ball : MonoBehaviour
         v.x = Mathf.Cos(Mathf.Deg2Rad * direction) * speed;
         v.y = Mathf.Sin(Mathf.Deg2Rad * direction) * speed;
         RigidBody.velocity = v;
-        Debug.Log(v.x + " " + v.y);
     }
 
     void Update()
@@ -55,5 +54,10 @@ public class Ball : MonoBehaviour
             v.y *= -1;
         }
         RigidBody.velocity = v;
+    }
+
+    public void OnMouseDown()
+    {
+        Destroy(gameObject);
     }
 }
