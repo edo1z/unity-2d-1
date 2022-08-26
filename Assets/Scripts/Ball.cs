@@ -58,6 +58,11 @@ public class Ball : MonoBehaviour
 
     public void OnMouseDown()
     {
+        Vector2 position = transform.position;
+        for (int i = 0; i < 30; i++)
+        {
+            Particle.add(position.x, position.y);
+        }
         Destroy(gameObject);
     }
 }
