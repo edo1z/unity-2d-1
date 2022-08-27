@@ -1,6 +1,8 @@
 using UnityEngine;
 public class Ball : MonoBehaviour
 {
+    private float speed = 10;
+
     Rigidbody2D _rigidbody2D = null;
     public Rigidbody2D RigidBody
     {
@@ -26,7 +28,6 @@ public class Ball : MonoBehaviour
         screen_min = Camera.main.ViewportToWorldPoint(Vector2.zero);
 
         float direction = Random.Range(0, 359);
-        float speed = 10;
         Vector2 v;
         v.x = Mathf.Cos(Mathf.Deg2Rad * direction) * speed;
         v.y = Mathf.Sin(Mathf.Deg2Rad * direction) * speed;
@@ -64,5 +65,32 @@ public class Ball : MonoBehaviour
             Particle.add(position.x, position.y);
         }
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Block")
+        {
+            ContactPoint2D contact = collision.GetContact(0);
+            Vector3 relative_point = transform.InverseTransformPoint(contact.point);
+            Vector2 v = RigidBody.velocity;
+            if (relative_point.x > 0 && v.x > 0)
+            {
+                v.x *= -1;
+            }
+            else if (relative_point.x < 0 && v.x < 0)
+            {
+                v.x *= -1;
+            }
+            if (relative_point.y > 0 && v.y > 0)
+            {
+                v.y *= -1;
+            }
+            else if (relative_point.y < 0 && v.y < 0)
+            {
+                v.y *= -1;
+            }
+            RigidBody.velocity = v;
+        }
     }
 }
