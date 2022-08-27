@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Rigidbody2D _rigidbody2D = null;
+    public Rigidbody2D rigidBody
     {
-        
+        get { return _rigidbody2D ?? (_rigidbody2D = gameObject.GetComponent<Rigidbody2D>()); }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.collider.tag == "Player")
+        {
+            Vector2 position = transform.position;
+            for (int i = 0; i < 30; i++)
+            {
+                Particle.add(position.x, position.y);
+            }
+            Destroy(gameObject);
+        }
     }
 }
