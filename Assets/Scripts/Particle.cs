@@ -34,7 +34,7 @@ public class Particle : MonoBehaviour
     IEnumerator Start()
     {
         float direction = Random.Range(0, 359);
-        float speed = Random.Range(10.0f, 20.0f);
+        float speed = Random.Range(1.0f, 20.0f);
         Vector2 v;
         v.x = Mathf.Cos(Mathf.Deg2Rad * direction) * speed;
         v.y = Mathf.Sin(Mathf.Deg2Rad * direction) * speed;

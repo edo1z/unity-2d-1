@@ -27,7 +27,8 @@ public class Ball : MonoBehaviour
         screen_max = Camera.main.ViewportToWorldPoint(Vector2.one);
         screen_min = Camera.main.ViewportToWorldPoint(Vector2.zero);
 
-        float direction = Random.Range(0, 359);
+        /* float direction = Random.Range(0, 359); */
+        float direction = 60;
         Vector2 v;
         v.x = Mathf.Cos(Mathf.Deg2Rad * direction) * speed;
         v.y = Mathf.Sin(Mathf.Deg2Rad * direction) * speed;
